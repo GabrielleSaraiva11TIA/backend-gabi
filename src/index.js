@@ -13,7 +13,13 @@ app.get("/", (request, response) => {
 })
 
 app.post("/cadastrar", (request, response) => {
-    console.log(request.body)
+    const { name, email, age, nickname, password } = request.body.user
+
+    // cadastrar usuario no banco de dados
+    console.log("Dados user: ", name, email, age, nickname, password)
+
+    //retornar ao user que fez a request
+    response.status(201).json({message: "Usuário cadastrado com sucesso!"})
 })
 
 app.listen(port, () => {
