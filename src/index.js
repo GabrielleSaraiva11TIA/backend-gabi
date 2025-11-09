@@ -6,9 +6,14 @@ const app = express()
 const port = 3333
 
 app.use(cors())
+app.use(express.json())
 
 app.get("/", (request, response) => {
     response.json(persons)
+})
+
+app.post("/cadastrar", (request, response) => {
+    console.log(request.body)
 })
 
 app.listen(port, () => {
