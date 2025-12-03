@@ -1,6 +1,5 @@
 import express from "express"
 import cors from "cors"
-import { persons } from "./persons.js"
 import mysql from "mysql2"
 
 const app = express()
@@ -10,7 +9,15 @@ app.use(cors())
 app.use(express.json())
 
 app.get("/", (request, response) => {
-    response.json(persons)
+    const selectCommand = "SELECT name, email, age FROM gabrielledemoraes_02ma"
+    database.query(selectCommand, (error, users) => {
+        if(error) {
+            console.log(error)
+            return
+        }
+
+        response.json(users)
+    })
 })
 
 //rota para o login
